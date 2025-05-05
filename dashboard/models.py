@@ -4,7 +4,7 @@ from django.db import models
 
 class FuturesPrice(models.Model):
     date = models.DateField()
-    product_name = models.CharField(max_length=20)  # e.g., "GREBY26"
+    product_name = models.CharField(max_length=20)
     average_price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
