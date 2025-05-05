@@ -14,70 +14,50 @@ django.setup()
 from dashboard.models import FuturesPrice
 print(f"Initial DB count: {FuturesPrice.objects.count()} records")
 
-def download_specific_date() -> pd.DataFrame:
-    fixed_date = datetime(2025, 4, 30)
-    url = f"https://www.enexgroup.gr/documents/20126/314344/{fixed_date.strftime('%Y%m%d')}_DER_DOL_EN_v01.xlsx"
-    print(f"Fetching data for April 30, 2025 from: {url}")
+def download_todays_excel() -> pd.DataFrame:
+    today = datetime.now().strftime('%Y%m%d')
+    url = f"https://www.enexgroup.gr/documents/20126/314344/20250430_DER_DOL_EN_v01.xlsx"
+    print(f"Fetching today's data from: {url}")
     
     try:
         response = requests.get(url, timeout=10)
-        response.raise_for_status()
-        # Read specific sheet (DOL_Derivatives is sheet 1)
-        df = pd.read_excel(BytesIO(response.content), sheet_name=1, engine="openpyxl")
-        print(f"Successfully downloaded {len(df)} rows")
-        return df
+        response.raise_for_status()  # Raises exception for bad status
+        return pd.read_excel(BytesIO(response.content), engine="openpyxl")
     except Exception as e:
         print(f"Download failed: {str(e)}")
         return None
 
-def save_all_instruments(df: pd.DataFrame):
+def save_all_contracts(df: pd.DataFrame):
     if df is None:
-        print("No data to process")
         return
         
-    # Clean column names (remove spaces and make lowercase)
-    df.columns = [col.strip().lower().replace(' ', '_') for col in df.columns]
-    print("\nAvailable columns:", df.columns.tolist())
-    
-    target_date = datetime(2025, 4, 30).date()
-    saved_count = 0
+    print("\nFound columns:", df.columns.tolist())
+    print(f"\nProcessing {len(df)} rows...")
     
     for index, row in df.iterrows():
         try:
-            instrument = str(row['instrument']).strip()
-            
-            # Get average price (try different possible columns)
-            avg_price = None
-            for col in ['average_price_of_orders', 'average_price_of_trades_(vwap)', 'fixing_prices']:
-                if pd.notna(row.get(col)):
-                    avg_price = float(row[col])
-                    break
-            
-            if avg_price is None:
-                print(f"Skipping {instrument} - no valid price data")
-                continue
+            product = str(row.get("Instrument ", "")).strip()
+            avg_price = float(row.get("Average Price of Orders ", 0))
+
+            if avg_price != 0:
+                print(f"Row {index}: {product} = {avg_price}")
                 
-            print(f"Processing: {instrument} @ {avg_price}")
-            
-            obj, created = FuturesPrice.objects.update_or_create(
-                date=target_date,
-                product_name=instrument,
-                defaults={'average_price': avg_price}
-            )
-            saved_count += 1
-            status = "Created" if created else "Updated"
-            print(f"{status}: {instrument} = {avg_price}")
-            
+                obj, created = FuturesPrice.objects.update_or_create(
+                    date=datetime.now().date(),
+                    product_name=product,
+                    defaults={'average_price': avg_price}
+                )
+                print(f"{'Created' if created else 'Updated'}: {product}")
+                
         except Exception as e:
             print(f"Error on row {index}: {str(e)}")
             continue
-    
-    print(f"\nSuccessfully saved/updated {saved_count} records")
-    print(f"Final DB count: {FuturesPrice.objects.count()} records")
 
 if __name__ == "__main__":
-    print("\n=== Starting scrape for April 30, 2025 ===")
-    df = download_specific_date()
-    if df is not None:
-        save_all_instruments(df)
+    print("\n=== Starting scrape ===")
+    today_df = download_todays_excel()
+    print(today_df)
+    save_all_contracts(today_df)
+    
+    print(f"\nFinal DB count: {FuturesPrice.objects.count()} records")
     print("=== Done ===")
