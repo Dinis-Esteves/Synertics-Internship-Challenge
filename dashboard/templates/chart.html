@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Futures Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        canvas {
+            max-width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <h2>GREBY26 - 7 Day Futures Chart</h2>
+    <canvas id="futuresChart"></canvas>
+
+    <script>
+        async function fetchData() {
+            const response = await fetch('/api/futures-data/');
+            const result = await response.json();
+
+            if (result.status !== 'success') {
+                alert('Failed to fetch data');
+                return;
+            }
+
+            const data = result.data;
+
+            const labels = data.map(entry => entry.date);
+            const prices = data.map(entry => parseFloat(entry.average_price));
+            const changes = data.map(entry => entry.percentage_change);
+
+            const ctx = document.getElementById('futuresChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Average Price (€)',
+                        data: prices,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        tension: 0.1,
+                        fill: false,
+                        pointBackgroundColor: 'white',
+                        pointBorderColor: 'rgba(75, 192, 192, 1)',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                afterLabel: function(context) {
+                                    const change = changes[context.dataIndex];
+                                    return `Change: ${change}%`;
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Average Price and Daily Change (%)'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Average Price (€)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        fetchData();
+    </script>
+</body>
+</html>

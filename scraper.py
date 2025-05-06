@@ -16,7 +16,7 @@ print(f"Initial DB count: {FuturesPrice.objects.count()} records")
 
 def download_todays_excel() -> pd.DataFrame:
     today = datetime.now().strftime('%Y%m%d')
-    url = f"https://www.enexgroup.gr/documents/20126/314344/20250430_DER_DOL_EN_v01.xlsx"
+    url = f"https://www.enexgroup.gr/documents/20126/314344/20250429_DER_DOL_EN_v01.xlsx"
     print(f"Fetching today's data from: {url}")
     
     try:
