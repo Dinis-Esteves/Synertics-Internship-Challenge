@@ -10,15 +10,29 @@
             padding: 20px;
         }
         canvas {
-            max-width: 800px;
+            width: 100%;
+            height: 50%;
             margin: auto;
+        }
+        .chart-header {
+        font-size: 20px;
+        color: #002aff;
+        padding: 5px;
+        width: 12%;
+        background: rgba(215, 237, 253, 0.5);
+        border-radius: 4px;
         }
     </style>
 </head>
 <body>
-    <h2>GREBY26 - 7 Day Futures Chart</h2>
-    <canvas id="futuresChart"></canvas>
+    <div class="chart-header">
+        Greece
 
+    </div>
+    <div class="chart-container">
+        
+    </div>
+    <canvas id="futuresChart"></canvas>
     <script>
         async function fetchData() {
             const response = await fetch('/api/futures-data/');
@@ -26,7 +40,8 @@
 
             if (result.status !== 'success') {
                 alert('Failed to fetch data');
-                return;
+                return;chart.css
+        
             }
 
             const data = result.data;
@@ -43,39 +58,31 @@
                     datasets: [{
                         label: 'Average Price (€)',
                         data: prices,
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        tension: 0.1,
+                        borderColor: 'rgba(52, 107, 167, 0.8)',
+                        tension: 0,
+                        borderWidth: 2,
                         fill: false,
                         pointBackgroundColor: 'white',
-                        pointBorderColor: 'rgba(75, 192, 192, 1)',
+                        pointBorderColor: 'rgba(52, 107, 167, 0.8)',
                     }]
                 },
                 options: {
-                    responsive: true,
                     plugins: {
-                        tooltip: {
-                            callbacks: {
-                                afterLabel: function(context) {
-                                    const change = changes[context.dataIndex];
-                                    return `Change: ${change}%`;
-                                }
-                            }
+                        legend: {
+                            display: false
                         },
-                        title: {
-                            display: true,
-                            text: 'Average Price and Daily Change (%)'
-                        }
                     },
+                    responsive: true,
                     scales: {
                         x: {
                             title: {
-                                display: true,
+                                display: false,
                                 text: 'Date'
                             }
                         },
                         y: {
                             title: {
-                                display: true,
+                                display: false,
                                 text: 'Average Price (€)'
                             }
                         }
