@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-5&atwg0wyv5*p8csysw9dt-2m!(kz*s7z!fmro9ck+sstc#+k+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.72']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'futures_dashboard.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'synertics',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
