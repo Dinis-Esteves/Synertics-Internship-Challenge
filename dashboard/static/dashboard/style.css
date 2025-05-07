@@ -7,24 +7,56 @@
 html, body {
     height: 100%;
     width: 100%;
+    padding: 5px;
     font-family: Arial, sans-serif;
     background-color: rgb(245, 245, 245);
+    overflow: hidden; /* Prevent default page scrolling */
 }
 
-.app {
+/* Main container for logo and app */
+.main-container {
     display: flex;
     flex-direction: column;
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
+}
+
+.logo-header {
+    flex: 0 0 auto; /* Don't grow or shrink */
+    height: 10vh; /* 10% of viewport height */
+    min-height: 80px;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding-left: 1.2%;
+}
+
+.logo {
+    height: 70%; /* Relative to logo-header height */
+    width: auto; /* Maintain aspect ratio */
+    max-width: 500px;
+}
+
+.app {
+    flex: 1; /* Take remaining space */
+    display: flex;
+    flex-direction: column;
     background-color: white;
     padding: 20px;
+    border-radius: 5px;
+    overflow: hidden; /* Prevent internal scrolling */
+    margin-top: 0.5vh; /* Small gap between logo and app */
 }
 
 h2 {
     color: rgba(30, 76, 124, 1);
     margin-bottom: 20px;
-    font-size:35px;
+    font-size: 35px;
     font-weight: 600;
+    margin-left: 0.5%;
 }
 
 .chart-header {
@@ -34,7 +66,7 @@ h2 {
     padding: 5px 15px;
     display: inline-flex;
     background: rgba(215, 237, 253, 0.5);
-    border-radius: 25px;
+    border-radius: 40px;
     align-items: center;
     margin-bottom: 20px;
     max-width: 220px;
@@ -44,6 +76,7 @@ h2 {
     display: flex;
     flex-direction: column;
     line-height: 1.2;
+    margin-left: 0.3%;
 }
 
 .country-label {
@@ -54,17 +87,16 @@ h2 {
 .change-label {
     font-size: 18px;
     font-weight: 900;
-    color: #4CAF50; /* Green for positive, we'll modify via JS */
+    color: #4CAF50;
 }
 
 .Greece-Flag {
-    width: 65px;
-    height: 65px;
+    width: 7vmin;
+    height: 7vmin;
     margin-right: 12px;
     border-radius: 50%;
 }
 
-/* For negative percentages */
 .negative {
     color: #F44336 !important;
 }
@@ -73,7 +105,7 @@ h2 {
     flex: 1;
     width: 100%;
     position: relative;
-    min-height: 0; 
+    min-height: 0;
 }
 
 #futuresChart {
@@ -83,31 +115,63 @@ h2 {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .app {
         padding: 15px;
     }
     
     h2 {
-        font-size: 35px;
+        font-size: 28px;
+    }
+    
+    .logo-header {
+        height: 8vh;
+        justify-content: center;
+        min-height: 60px;
+    }
+    
+    .Greece-Flag {
+        width: 50px;
+        height: 50px;
     }
 }
 
 @media (max-width: 480px) {
     .app {
         padding: 10px;
+        border-radius: 15px;
     }
     
     h2 {
-        font-size: 20px;
+        font-size: 22px;
+        margin-bottom: 15px;
     }
     
     .chart-header {
         font-size: 12px;
+        max-width: 180px;
     }
     
     .Greece-Flag {
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .country-label {
+        font-size: 20px;
+    }
+    
+    .change-label {
+        font-size: 16px;
+    }
+    
+    .logo-header {
+        height: 7vh;
+        min-height: 50px;
+        border-radius: 15px;
+    }
+    
+    .logo {
+        height: 60%;
     }
 }

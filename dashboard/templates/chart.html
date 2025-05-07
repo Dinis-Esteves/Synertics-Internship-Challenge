@@ -10,21 +10,25 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="app">
-        <h2>Markets</h2>
-        <div class="chart-header">
-            <img src="{% static 'dashboard/assets/greece.png' %}" class="Greece-Flag">
-            <div class="header-labels">
-                <div class="country-label">Greece</div>
-                <div class="change-label" id="percentageChange">+2.4%</div>
+     <div class="main-container">
+        <div class="logo-header">
+            <img src="{% static 'dashboard/assets/logo.png' %}" class="logo">
+        </div>
+        <div class="app">
+            <h2>Markets</h2>
+            <div class="chart-header">
+                <img src="{% static 'dashboard/assets/greece.png' %}" class="Greece-Flag">
+                <div class="header-labels">
+                    <div class="country-label">Greece</div>
+                    <div class="change-label" id="percentageChange">+2.4%</div>
+                </div>
             </div>
+            <div class="chart-container">
+                <canvas id="futuresChart"></canvas>
+            </div>
+            
         </div>
-        <div class="chart-container">
-            <canvas id="futuresChart"></canvas>
-        </div>
-        
     </div>
-
     <script src="{% static 'dashboard/script.js' %}"></script>
 </body>
 </html>

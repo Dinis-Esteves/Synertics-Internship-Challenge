@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const data = result.data;
             const latestChange = result.percentage_change;
-            console.log('Latest Change:', latestChange);
 
             // Update percentage display
             const changeElement = document.getElementById('percentageChange');
@@ -35,7 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         data: prices,
                         borderColor: 'rgba(52, 107, 167, 0.8)',
                         tension: 0,
-                        borderWidth: 2,
+                        borderWidth: 3,
+                        pointRadius: 6,
                         fill: false,
                         pointBackgroundColor: 'white',
                         pointBorderColor: 'rgba(52, 107, 167, 0.8)',
