@@ -1,7 +1,7 @@
 from celery import shared_task
-from datetime import datetime
+from dashboard.scraper import run_scraper as scrape
 
 @shared_task
-def test_celery():
-    print(f"[{datetime.now()}] Celery is working!")
-    return "Celery task complete."
+def run_scraper():
+    return scrape()
+

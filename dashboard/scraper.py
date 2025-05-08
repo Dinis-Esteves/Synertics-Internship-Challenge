@@ -6,11 +6,6 @@ from io import BytesIO
 import django
 import sys
 
-# Setup Django environment
-sys.path.append(".")
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "futures_dashboard.settings")
-django.setup()
-
 from dashboard.models import FuturesPrice
 print(f"Initial DB count: {FuturesPrice.objects.count()} records")
 
@@ -66,7 +61,3 @@ def run_scraper():
     print(f"\nFinal DB count: {FuturesPrice.objects.count()} records")
     print("=== Done ===")
     return {"status": "success", "data": "sample data"}
-
-if __name__ == "__main__":
-    run_scraper()
-    print("Scraping completed.")
