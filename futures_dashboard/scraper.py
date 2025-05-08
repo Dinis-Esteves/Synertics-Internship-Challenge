@@ -53,11 +53,20 @@ def save_all_contracts(df: pd.DataFrame):
             print(f"Error on row {index}: {str(e)}")
             continue
 
-if __name__ == "__main__":
+def run_scraper():
     print("\n=== Starting scrape ===")
     today_df = download_todays_excel()
-    print(today_df)
-    save_all_contracts(today_df)
+    
+    if today_df is not None:
+        print(today_df)
+        save_all_contracts(today_df)
+    else:
+        print("Failed to download today's data.")
     
     print(f"\nFinal DB count: {FuturesPrice.objects.count()} records")
     print("=== Done ===")
+    return {"status": "success", "data": "sample data"}
+
+if __name__ == "__main__":
+    run_scraper()
+    print("Scraping completed.")
