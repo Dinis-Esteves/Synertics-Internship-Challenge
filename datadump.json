@@ -1,0 +1,200 @@
+[
+{
+  "model": "dashboard.futuresprice",
+  "pk": 1,
+  "fields": {
+    "date": "2025-05-05",
+    "product_name": "GREBM0625",
+    "average_price": "97.50"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 2,
+  "fields": {
+    "date": "2025-05-05",
+    "product_name": "GREBM0725",
+    "average_price": "100.13"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 3,
+  "fields": {
+    "date": "2025-05-05",
+    "product_name": "GREBQ325",
+    "average_price": "112.50"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 4,
+  "fields": {
+    "date": "2025-05-05",
+    "product_name": "GREBY26",
+    "average_price": "99.50"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 5,
+  "fields": {
+    "date": "2025-05-05",
+    "product_name": "GREPM0525",
+    "average_price": "80.25"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 6,
+  "fields": {
+    "date": "2025-05-05",
+    "product_name": "GREPM0625",
+    "average_price": "94.50"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 7,
+  "fields": {
+    "date": "2025-05-05",
+    "product_name": "GREPQ325",
+    "average_price": "101.25"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 8,
+  "fields": {
+    "date": "2025-05-05",
+    "product_name": "GREPY26",
+    "average_price": "103.48"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 9,
+  "fields": {
+    "date": "2025-05-06",
+    "product_name": "GREBM0525",
+    "average_price": "83.50"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 10,
+  "fields": {
+    "date": "2025-05-06",
+    "product_name": "GREBM0625",
+    "average_price": "95.50"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 11,
+  "fields": {
+    "date": "2025-05-06",
+    "product_name": "GREBQ325",
+    "average_price": "114.00"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 12,
+  "fields": {
+    "date": "2025-05-06",
+    "product_name": "GREBY26",
+    "average_price": "102.50"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 13,
+  "fields": {
+    "date": "2025-05-06",
+    "product_name": "GREPM0525",
+    "average_price": "70.35"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 14,
+  "fields": {
+    "date": "2025-05-06",
+    "product_name": "GREPQ325",
+    "average_price": "102.60"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 15,
+  "fields": {
+    "date": "2025-05-06",
+    "product_name": "GREPY26",
+    "average_price": "106.60"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 16,
+  "fields": {
+    "date": "2025-05-04",
+    "product_name": "GREBY26",
+    "average_price": "130.00"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 17,
+  "fields": {
+    "date": "2025-05-03",
+    "product_name": "GREBY26",
+    "average_price": "120.00"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 18,
+  "fields": {
+    "date": "2025-05-06",
+    "product_name": "GREBM0725",
+    "average_price": "102.50"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 19,
+  "fields": {
+    "date": "2025-05-06",
+    "product_name": "GREPM0625",
+    "average_price": "95.50"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 20,
+  "fields": {
+    "date": "2025-05-02",
+    "product_name": "GREBY26",
+    "average_price": "150.00"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 21,
+  "fields": {
+    "date": "2025-05-01",
+    "product_name": "GREBY26",
+    "average_price": "110.00"
+  }
+},
+{
+  "model": "dashboard.futuresprice",
+  "pk": 22,
+  "fields": {
+    "date": "2025-04-30",
+    "product_name": "GREBY26",
+    "average_price": "100.00"
+  }
+}
+]
