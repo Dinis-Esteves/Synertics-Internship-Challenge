@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
+    environment:
+      - DJANGO_SETTINGS_MODULE=futures_dashboard.settings
+
+  worker:
+    build: .
+    command: celery -A futures_dashboard worker --loglevel=info
+    depends_on:
+      - web
+      - redis
+    volumes:
+      - .:/app
+
+  beat:
+    build: .
+    command: celery -A futures_dashboard beat --loglevel=info
+    depends_on:
+      - web
+      - redis
+    volumes:
+      - .:/app
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
