@@ -8,8 +8,8 @@ This project is an automated futures scraping dashboard that collects futures da
 
 ## 1. **Clone the repository**
 ```bash
-git clone https://github.com/your-username/your-repository.git
-cd your-repository
+git clone git@github.com:Dinis-Esteves/Synertics-Internship-Challenge.git
+cd Synertics-Internship-Challenge
 ```
 
 
@@ -33,22 +33,23 @@ EMAIL_HOST_PASSWORD=your_app_password
    ```
 Access in your browser: http://localhost:8000
 
-## About the Scheduled Task
+## 4. **About the Scheduled Task**
 Celery is configured and working, but the scheduled task (Periodic Task) does not come pre-configured in the database by default.
 You can easily add it via the admin panel:
 
-Access http://localhost:8000/admin (password=user=admin)
+1. Access http://localhost:8000/admin *(password=user=admin)*
 
-Go to "Periodic Tasks".
+2. Go to "Periodic Tasks".
 
-Create a new task with:
+3. Create a new task with:
 
-Name: Daily Scraper (or whatever you prefer)
+4. Name: Daily Scraper (or whatever you prefer)
 
-Task: dashboard.tasks.run_scraper
+5. Task: dashboard.tasks.run_scraper
 
-Create a crontab schedule with your desired timing.
+6. Create a crontab schedule with your desired timing.
 
+Setting up this pre-configured system was a bit tricky after completing the Docker setup. I also wasn’t sure what time to configure it, as the website rarely had the daily Excel file available. ☹️
 # Project Checklist:
 
 - Functional scraping ✅
@@ -68,3 +69,10 @@ Create a crontab schedule with your desired timing.
 - Visible logs in terminal ✅
 
 - Email notifications (via SMTP) ✅
+
+# Examples of the automatic messages
+
+<img src="https://github.com/user-attachments/assets/2f159ed1-a59b-4fb4-96fd-a9f5a89864a3" width="300" alt="Correct example">
+<img src="https://github.com/user-attachments/assets/7ee6551b-876e-4666-9d8d-c4eeedaa1fb7" width="300" alt="Error example">
+
+
