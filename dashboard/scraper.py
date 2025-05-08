@@ -5,7 +5,16 @@ from datetime import datetime
 from io import BytesIO
 import django
 import sys
+import logging
 
+def log(message):
+    logger.info(message)
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    with open("scraper.log", "a") as f:
+        f.write(f"[{timestamp}] {message}\n")
+
+
+logger = logging.getLogger(__name__)
 from dashboard.models import FuturesPrice
 print(f"Initial DB count: {FuturesPrice.objects.count()} records")
 
@@ -49,15 +58,21 @@ def save_all_contracts(df: pd.DataFrame):
             continue
 
 def run_scraper():
-    print("\n=== Starting scrape ===")
+    log("=== Starting scrape ===")
     today_df = download_todays_excel()
-    
+
     if today_df is not None:
-        print(today_df)
         save_all_contracts(today_df)
+        product_names = today_df["Instrument "].dropna().unique()
+        total = len(product_names)
+        log("Scraping successful.")
+        return {
+            "status": "success",
+            "date": str(datetime.now().date()),
+            "products": list(product_names),
+            "count": total
+        }
     else:
-        print("Failed to download today's data.")
-    
-    print(f"\nFinal DB count: {FuturesPrice.objects.count()} records")
-    print("=== Done ===")
-    return {"status": "success", "data": "sample data"}
+        log("Scraping failed.")
+        log("Failed to download today's data.")
+        raise Exception("Failed to download today's data.")

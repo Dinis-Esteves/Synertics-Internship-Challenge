@@ -143,3 +143,12 @@ CELERY_TIMEZONE = 'Europe/Lisbon'
 CELERY_ENABLE_UTC = False
 
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers.DatabaseScheduler"
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'dinis.dme@gmail.com'
+EMAIL_HOST_PASSWORD = 'your_password_here' # Thats a secret ;)
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'alerts@example.com'
